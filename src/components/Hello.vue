@@ -21,12 +21,27 @@
 </template>
 
 <script>
+import Twitch from 'twitch.tv-api'
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  mounted () {
+    console.log('mounted')
+    const twitch = new Twitch({
+      id: '462kn4pnv92z2eef9e7kjphltdz5hy',
+      secret: '462kn4pnv92z2eef9e7kjphltdz5hy'
+    })
+    twitch.getUser('destiny')
+        .then(data => {
+          console.log(data)
+        })
+        .catch(error => {
+          console.error(error)
+        })
   }
 }
 </script>
