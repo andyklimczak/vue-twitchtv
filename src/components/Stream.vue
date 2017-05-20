@@ -1,6 +1,10 @@
 <template>
   <div class="stream">
-    stream id: {{ stream._id }}
+    <img :src="stream.preview.large" />
+    <div>
+      {{ stream.channel.name}}
+      {{ stream.game }}
+    </div>
   </div>
 </template>
 
@@ -11,9 +15,6 @@ export default {
   data () {
     return {
     }
-  },
-  updated () {
-    console.log(this.props)
   }
 }
 </script>
