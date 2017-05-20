@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="twitch">
     <stream v-for="stream in streams" :key="stream.id" :stream="stream"></stream>
     <pre>
       {{$data}}
@@ -11,13 +11,12 @@
 import Twitch from 'twitch.tv-api'
 import Stream from './Stream'
 export default {
-  name: 'hello',
+  name: 'twitch',
   components: {
     Stream
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
       streams: []
     }
   },
@@ -42,21 +41,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+.twitch {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-content: space-evenly;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+.stream {
+  margin: 10px;
 }
 </style>
