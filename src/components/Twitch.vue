@@ -1,9 +1,6 @@
 <template>
   <div class="twitch">
     <stream v-for="stream in streams" :key="stream.id" :stream="stream"></stream>
-    <pre>
-      {{$data}}
-    </pre>
   </div>
 </template>
 
