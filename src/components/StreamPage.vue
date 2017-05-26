@@ -1,6 +1,12 @@
 <template>
   <div class="stream">
     {{ $route.params.channel_name }}
+    <iframe
+      :src="streamUrl"
+      frameborder="0"
+      scrolling="no"
+      allowfullscreen="true">
+    </iframe>
   </div>
 </template>
 
@@ -9,6 +15,12 @@ export default {
   name: 'streampage',
   created () {
     console.log(this.$route.params)
+    console.log(this.streamUrl)
+  },
+  computed: {
+    streamUrl () {
+      return `http://player.twitch.tv/?channel=${this.$route.params.channel_name}`
+    }
   }
 }
 </script>
