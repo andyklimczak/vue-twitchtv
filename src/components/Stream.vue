@@ -1,6 +1,6 @@
 <template>
   <div class="stream">
-    <router-link :to="{ name: 'StreamPage', params: { channel_name: stream.channel.name }}">
+    <router-link :to="{ name: 'Channel', params: { channel_name: stream.channel.name }}">
       <img :src="stream.preview.large" />
       {{ stream.channel.name}}
       {{ stream.game }}

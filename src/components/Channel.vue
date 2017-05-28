@@ -1,5 +1,5 @@
 <template>
-  <div class="stream">
+  <div class="channel">
     {{ $route.params.channel_name }}
     <iframe
       :src="streamUrl"
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'streampage',
+  name: 'channel',
   created () {
     console.log(this.$route.params)
     console.log(this.streamUrl)

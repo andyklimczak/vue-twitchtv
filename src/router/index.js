@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Twitch from '@/components/Twitch'
-import StreamPage from '@/components/StreamPage'
+import Channel from '@/components/Channel'
 
 Vue.use(Router)
 
@@ -14,8 +14,8 @@ export default new Router({
     },
     {
       path: '/:channel_name',
-      name: 'StreamPage',
-      component: StreamPage
+      name: 'Channel',
+      component: Channel
     }
   ]
 })
