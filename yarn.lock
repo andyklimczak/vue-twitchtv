@@ -5700,9 +5700,9 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
-twitch.tv-api@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/twitch.tv-api/-/twitch.tv-api-1.0.5.tgz#7fc9ad320077d04dc3dc0fd3d47cc000aa1bd16c"
+twitch.tv-api@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/twitch.tv-api/-/twitch.tv-api-1.1.0.tgz#79de4924ec57c18998b7f142d08be745754c3544"
   dependencies:
     bluebird "^3.5.0"
 
