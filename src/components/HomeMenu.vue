@@ -7,8 +7,10 @@
 
       <div class="pure-u-4-5">
         <ul class="pure-menu-list">
+          <li class="pure-menu-item">
+            <input v-model="query" @keyup.enter="search" placeholder="Search">
+          </li>
           <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
-          <li class="pure-menu-item"><a href="#" class="pure-menu-link">Tour</a></li>
           <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sign Up</a></li>
         </ul>
       </div>
@@ -21,7 +23,13 @@
     name: 'home-menu',
     data () {
       return {
-
+        query: ''
+      }
+    },
+    methods: {
+      search () {
+        console.log(this.query)
+        this.$router.push({ name: 'Search', params: { search_query: this.query } })
       }
     }
   }

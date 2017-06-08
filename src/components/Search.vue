@@ -13,8 +13,8 @@ export default {
       streams: []
     }
   },
-  created () {
-    console.log('created')
+  updated () {
+    console.log('updated')
     const twitch = new Twitch({
       id: '462kn4pnv92z2eef9e7kjphltdz5hy'
     })
