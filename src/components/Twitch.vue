@@ -34,9 +34,9 @@ export default {
   },
   updated () {
     console.log('update')
-    this.loading = false
     setTimeout(() => {
       this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+      this.loading = false
     }, 3000)
   },
   methods: {
@@ -58,7 +58,7 @@ export default {
           }).then(streams => {
             console.log(streams)
             this.streams = this.streams.concat(streams)
-            this.offset += 4
+            this.offset += 8
           }).catch(error => {
             console.error(error)
           })
