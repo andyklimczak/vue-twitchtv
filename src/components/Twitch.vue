@@ -1,12 +1,11 @@
 <template>
   <div class="twitch">
-    <stream v-for="stream in streams" :key="stream.id" :stream="stream"></stream>
+    <stream v-for="stream in $store.state.streams" :key="stream.id" :stream="stream"></stream>
     <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
   </div>
 </template>
 
 <script>
-import Twitch from 'twitch.tv-api'
 import InfiniteLoading from 'vue-infinite-loading'
 import Stream from './Stream'
 
@@ -16,53 +15,23 @@ export default {
     Stream,
     InfiniteLoading
   },
-  data () {
-    return {
-      offset: 0,
-      limit: 8,
-      streams: [],
-      twitch: null,
-      loading: false
-    }
-  },
   created () {
     console.log('created')
-    this.twitch = new Twitch({
-      id: '462kn4pnv92z2eef9e7kjphltdz5hy'
-    })
-    this.fetchStreams()
+    this.$store.commit('initTwitch')
+    this.$store.dispatch('fetchStreams')
   },
   updated () {
     console.log('update')
+    console.log('store', this.$store)
     setTimeout(() => {
       this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-      this.loading = false
+      this.$store.commit('setLoading', false)
     }, 3000)
   },
   methods: {
     onInfinite () {
       console.log('on inf')
-      this.fetchStreams()
-    },
-    fetchStreams () {
-      if (!this.loading) {
-        this.loading = true
-        const options = {
-          offset: this.offset,
-          limit: this.limit
-        }
-        return this.twitch.getTopStreams(options)
-          .then(data => {
-            console.log(data)
-            return data.streams
-          }).then(streams => {
-            console.log(streams)
-            this.streams = this.streams.concat(streams)
-            this.offset += 8
-          }).catch(error => {
-            console.error(error)
-          })
-      }
+      this.$store.dispatch('fetchStreams')
     }
   }
 }
