@@ -42,6 +42,22 @@ export default new Vuex.Store({
             console.error(error)
           })
       }
+    },
+    searchStreams ({ commit, state }, query) {
+      if (!state.loading) {
+        state.loading = true
+        return state.twitch.searchStreams(query, state.limit, state.offset)
+          .then(data => {
+            console.log(data)
+            return data.streams
+          }).then(streams => {
+            console.log(streams)
+            state.streams = state.streams.concat(streams)
+            state.offset += state.limit
+          }).catch(error => {
+            console.error(error)
+          })
+      }
     }
   }
 })
