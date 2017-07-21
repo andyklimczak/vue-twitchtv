@@ -23,15 +23,20 @@
 <script>
   export default {
     name: 'home-menu',
-    data () {
-      return {
-        query: ''
-      }
-    },
     methods: {
       search () {
-        console.log(this.query)
-        this.$router.push({ name: 'Search', params: { search_query: this.query } })
+        console.log('in search', this.$store.state.query)
+        this.$router.push({ name: 'Search', params: { search_query: this.$store.state.query } })
+      }
+    },
+    computed: {
+      query: {
+        get () {
+          return this.$store.state.query
+        },
+        set (val) {
+          this.$store.commit('setQuery', val)
+        }
       }
     }
   }

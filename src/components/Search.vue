@@ -16,12 +16,12 @@ export default {
     InfiniteLoading
   },
   created () {
-    console.log('created')
+    console.log('created search')
     this.$store.commit('initTwitch')
     this.$store.dispatch('searchStreams', this.$route.params.search_query)
   },
   updated () {
-    console.log('update')
+    console.log('update search')
     setTimeout(() => {
       this.$store.commit('setLoading', false)
       this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')

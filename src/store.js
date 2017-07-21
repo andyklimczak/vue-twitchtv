@@ -5,21 +5,32 @@ import Twitch from 'twitch.tv-api'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  strict: true,
   state: {
     twitch: null,
     streams: [],
     loading: false,
     offset: 0,
-    limit: 8
+    limit: 8,
+    query: ''
   },
   mutations: {
     initTwitch (state) {
-      state.twitch = new Twitch({
-        id: '462kn4pnv92z2eef9e7kjphltdz5hy'
-      })
+      if (!state.twitch) {
+        state.twitch = new Twitch({
+          id: '462kn4pnv92z2eef9e7kjphltdz5hy'
+        })
+      }
     },
     setLoading (state, val) {
       state.loading = val
+    },
+    setQuery (state, val) {
+      state.query = val
+    },
+    clearStreams (state) {
+      state.streams = []
+      state.offset = 0
     }
   },
   actions: {

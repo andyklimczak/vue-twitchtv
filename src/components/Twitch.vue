@@ -16,8 +16,9 @@ export default {
     InfiniteLoading
   },
   created () {
-    console.log('created')
+    console.log('created twitch')
     this.$store.commit('initTwitch')
+    this.$store.commit('clearStreams')
     this.$store.dispatch('fetchStreams')
   },
   updated () {
