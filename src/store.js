@@ -31,12 +31,18 @@ export default new Vuex.Store({
     clearStreams (state) {
       state.streams = []
       state.offset = 0
+    },
+    setStreams (state, val) {
+      state.streams = state.streams.concat(val)
+    },
+    increaseOffset (state) {
+      state.offset += state.limit
     }
   },
   actions: {
     fetchStreams ({ commit, state }) {
       if (!state.loading) {
-        state.loading = true
+        commit('setLoading', true)
         const options = {
           offset: state.offset,
           limit: state.limit
@@ -47,8 +53,8 @@ export default new Vuex.Store({
             return data.streams
           }).then(streams => {
             console.log('get streams', streams)
-            state.streams = state.streams.concat(streams)
-            state.offset += state.limit
+            commit('setStreams', streams)
+            commit('increaseOffset')
           }).catch(error => {
             console.error(error)
           })
@@ -56,15 +62,15 @@ export default new Vuex.Store({
     },
     searchStreams ({ commit, state }, query) {
       if (!state.loading) {
-        state.loading = true
+        commit('setLoading', true)
         return state.twitch.searchStreams(query, state.limit, state.offset)
           .then(data => {
             console.log(data)
             return data.streams
           }).then(streams => {
             console.log(streams)
-            state.streams = state.streams.concat(streams)
-            state.offset += state.limit
+            commit('setStreams', streams)
+            commit('increaseOffset')
           }).catch(error => {
             console.error(error)
           })
