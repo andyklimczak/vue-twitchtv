@@ -22,8 +22,8 @@ export default {
     this.fetchStreams()
   },
   updated () {
+    this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
     setTimeout(() => {
-      this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
       this.$store.commit('setLoading', false)
     }, 3000)
   },

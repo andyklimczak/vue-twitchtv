@@ -2,7 +2,7 @@
   <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
       <div class="pure-u-1-5">
-        <router-link :to="{ name: 'Twitch'}" class="pure-menu-heading">
+        <router-link :to="{ name: 'Index'}" class="pure-menu-heading">
           VueTwitch
         </router-link>
       </div>
