@@ -1,37 +1,23 @@
 <template>
   <div class="twitch">
-    <stream v-for="stream in $store.state.streams" :key="stream.id" :stream="stream"></stream>
-    <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
+    <streams :streams="$store.state.streams" :fetch-streams="fetchStreams"></streams>
   </div>
 </template>
 
 <script>
-import InfiniteLoading from 'vue-infinite-loading'
-import Stream from './Stream'
+import Streams from './Streams'
 
 export default {
   name: 'twitch',
   components: {
-    Stream,
-    InfiniteLoading
+    Streams
   },
   created () {
     console.log('created twitch')
-    this.$store.commit('initTwitch')
     this.$store.commit('clearStreams')
-    this.$store.dispatch('fetchStreams')
-  },
-  updated () {
-    console.log('update')
-    console.log('store', this.$store)
-    setTimeout(() => {
-      this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-      this.$store.commit('setLoading', false)
-    }, 3000)
   },
   methods: {
-    onInfinite () {
-      console.log('on inf')
+    fetchStreams () {
       this.$store.dispatch('fetchStreams')
     }
   }
@@ -40,13 +26,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.twitch {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  justify-content: space-evenly;
-}
-
-.stream {
-  margin: 10px;
-}
 </style>

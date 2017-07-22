@@ -49,10 +49,8 @@ export default new Vuex.Store({
         }
         return state.twitch.getTopStreams(options)
           .then(data => {
-            console.log(data)
             return data.streams
           }).then(streams => {
-            console.log('get streams', streams)
             commit('setStreams', streams)
             commit('increaseOffset')
           }).catch(error => {
@@ -65,10 +63,8 @@ export default new Vuex.Store({
         commit('setLoading', true)
         return state.twitch.searchStreams(query, state.limit, state.offset)
           .then(data => {
-            console.log(data)
             return data.streams
           }).then(streams => {
-            console.log(streams)
             commit('setStreams', streams)
             commit('increaseOffset')
           }).catch(error => {
